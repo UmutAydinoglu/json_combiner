@@ -28,7 +28,7 @@ json_files = [os.path.join(PATH, file) for file in os.listdir(PATH)]
 
 
 def combine_json(json_files: list):
-
+    # combine the json files return as a list
     combined_data = []
 
     for file_name in json_files:
@@ -43,6 +43,8 @@ def combine_json(json_files: list):
 
 
 def create_json(combined_data: list):
+    # take the json list and create a json file
+
     output_file_name = "combined.json"
 
     with open(output_file_name, "w") as output_file:
@@ -53,6 +55,7 @@ def create_json(combined_data: list):
 
 
 def extract_item_codes(combined_json_file):
+    # extract item codes from the combined json file and return as list
     with open(combined_json_file, "r") as json_file:
         data = json.load(json_file)
 
@@ -61,7 +64,8 @@ def extract_item_codes(combined_json_file):
     return codes
 
 
-def items_to_excel(items):
+def items_to_excel(items: list) -> None:
+    # convert the item codes list to a dataframe and create an Excel file from it
 
     df = pd.DataFrame(items)
     df.to_excel("items.xlsx", index=False)
